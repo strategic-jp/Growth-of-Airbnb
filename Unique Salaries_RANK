@@ -1,0 +1,25 @@
+Unique Salaries
+
+Find the top three distinct salaries for each department. Output the department name and the top 3 distinct salaries by each department. Order your results alphabetically by department and then by highest salary to lowest.
+
+--RANK(), RANK_DENSE(), ROW_NUMBER
+
+SELECT department,
+		salary,
+		rank_id
+
+FROM
+	(SELECT department,
+			salary,
+			Rank() OVER (PARTITION BY a.department
+							ODER BY a.salary DESC) AS rank_id
+
+	FROM	
+		(SELECT department, salary
+		 FROM twitter_employee
+		 GROUP BY department, salary
+		 ORDER BY department, salary) a
+
+	ORDER BY department,
+			 salary DESC) b
+WHERE rank_id < 4
