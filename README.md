@@ -1,2 +1,2 @@
-# Growth-of-Airbnb
-Scenario Based SQL Queries
+#Scenario Based SQL Queries
+sql data science case studies
